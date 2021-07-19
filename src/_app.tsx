@@ -7,8 +7,8 @@ import './styles/globals.css'
 console.log("Hello from tsx!");
 
 ReactDOM.render(
-  <div>
+  <section className={"quiz-wrapper"}>
     <Quiz></Quiz>
-  </div>,
+  </section>,
   document.getElementById("root")
 );

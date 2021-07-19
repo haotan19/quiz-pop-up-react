@@ -1,7 +1,9 @@
-import ListItem from "./ListItem";
-import React from "react";
+import QuizDataItem from "./QuizDataItem";
+import React, { useState } from "react";
 import { DataItem } from "utils";
 import List from "./List";
+import BackgroundOverlay from "./BackgroundOverlay";
+import QuizCard from "./QuizCard";
 
 const quizData: DataItem[] = [
   {
@@ -49,14 +51,16 @@ const quizData: DataItem[] = [
 ];
 
 const Quiz = () => {
+	const [currentQuestion, setCurrentQuestion] = useState(0)
   return (
-    <div>
-      <List>
-        {quizData.map((dataItem) => (
-          <ListItem key={dataItem.id} dataItem={dataItem} />
-        ))}
-      </List>
-    </div>
+    <>
+      <BackgroundOverlay/>
+			<QuizCard>
+					{quizData.map((dataItem) => (
+						<QuizDataItem key={dataItem.id} dataItem={dataItem} />
+					))}
+			</QuizCard>
+    </>
   );
 };
 
