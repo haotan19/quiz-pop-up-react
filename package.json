@@ -16,8 +16,11 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
-    "Hello": "^0.0.1",
+    "@tailwindcss/postcss7-compat": "^2.2.4",
+    "autoprefixer": "^9",
+    "postcss": "^7",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   }
 }
