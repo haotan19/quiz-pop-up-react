@@ -6,13 +6,22 @@ interface Props {
 }
 
 const QuizDataItem: React.FC<Props> = ({ dataItem }) => {
+  let gridClassName = "grid grid-cols-2 md:grid-cols-3 gap-2";
+  let btnClassName = "btn";
+
+  const tooManyCharacters = (text: string) => text.length > 18;
+  if (dataItem.answers.some(tooManyCharacters)) {
+    gridClassName = "grid gap-2 grid-cols-1";
+    btnClassName += " text-left";
+  }
+
   return (
     <div>
       <h2>{dataItem.question}</h2>
-      <ul className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-2">
+      <ul className={gridClassName}>
         {dataItem.answers.map((answer, index) => (
           <li key={answer + index}>
-            <button className="btn">{answer}</button>
+            <button className={btnClassName}>{answer}</button>
           </li>
         ))}
       </ul>
