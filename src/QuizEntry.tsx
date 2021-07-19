@@ -1,5 +1,7 @@
-import Quiz from "./Quiz";
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
+
+// import Quiz from "./Quiz";
+const Quiz = React.lazy(() => import("./Quiz"));
 
 import { DataItem } from "utils";
 
@@ -49,17 +51,30 @@ const quizData: DataItem[] = [
 ];
 
 const QuizEntry = () => {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [active, setActive] = useState(false);
 
   return (
     <section className="grid justify-center gap-4">
       <h1 className="text-center text-4xl">KNOW YOUR SKIN</h1>
-      <p className="text-center text-lg">Ready to find the right skincare products?</p>
-      <button className="btn max-w-sm" onClick={() => setActive(true)}>Start the quiz</button>
-      <Quiz quizData={quizData} active={active} setActive={setActive} />
+      <p className="text-center text-lg">
+        Ready to find the right skincare products?
+      </p>
+      <CallToActionButton setActive={setActive} />
+      <Suspense fallback={<div />}>
+        <Quiz quizData={quizData} active={active} setActive={setActive} />
+      </Suspense>
     </section>
   );
 };
+
+interface BtnProps {
+  setActive: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const CallToActionButton: React.FC<BtnProps> = ({ setActive }) => (
+  <button className="btn max-w-sm" onClick={() => setActive(true)}>
+    Start the quiz
+  </button>
+);
 
 export default QuizEntry;

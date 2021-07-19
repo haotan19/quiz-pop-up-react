@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+
 import QuizDataItem from "./QuizDataItem";
 import BackgroundOverlay from "./BackgroundOverlay";
 import QuizCard from "./QuizCard";
@@ -11,6 +12,8 @@ interface Props {
 }
 
 const Quiz: React.FC<Props> = ({ quizData, active, setActive }) => {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+
   let quizClassName = "quiz";
   if (active) {
     quizClassName += " quiz-active";
@@ -28,4 +31,4 @@ const Quiz: React.FC<Props> = ({ quizData, active, setActive }) => {
   );
 };
 
-export default Quiz;
+export default Quiz; 
