@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 
 // import Quiz from "./Quiz";
 const Quiz = React.lazy(() => import("./Quiz"));
@@ -50,8 +50,31 @@ const QUIZ_DATA: DataItem[] = [
   },
 ];
 
+window.addEventListener("scroll", () => {
+  document.documentElement.style.setProperty(
+    "--scroll-y",
+    `${window.scrollY}px`
+  );
+});
+
 const QuizEntry = () => {
   const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    const body = document.body;
+    if (active) {
+      // Lock Scroll on body
+      const scrollY =
+        document.documentElement.style.getPropertyValue("--scroll-y");
+      body.style.position = "fixed";
+      body.style.top = `-${scrollY}`;
+    } else {
+      const scrollY = body.style.top;
+      body.style.position = "";
+      body.style.top = "";
+      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+    }
+  }, [active]);
 
   return (
     <section className="grid justify-center gap-4">
