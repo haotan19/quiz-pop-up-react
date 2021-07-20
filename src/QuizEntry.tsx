@@ -71,10 +71,19 @@ interface BtnProps {
   setActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CallToActionButton: React.FC<BtnProps> = ({ setActive }) => (
-  <button className="btn max-w-sm" onClick={() => setActive(true)}>
-    Start the quiz
-  </button>
-);
+const CallToActionButton: React.FC<BtnProps> = ({ setActive }) => {
+  const [btnText, setBtnText] = useState("Start the quiz");
+  return (
+    <button
+      className="btn max-w-sm"
+      onClick={() => {
+        setActive(true);
+        setBtnText("Resume quiz");
+      }}
+    >
+      {btnText}
+    </button>
+  );
+};
 
 export default QuizEntry;

@@ -31,7 +31,7 @@ const Quiz: React.FC<Props> = ({ quizData, active, setActive }) => {
             setCurrentQuestion={setCurrentQuestion}
           />
         ))}
-        {currentQuestion > quizData.length - 1 && <div>Success</div>}
+        {currentQuestion > quizData.length && <div>Success</div>}
       </QuizCard>
     </div>
   );
