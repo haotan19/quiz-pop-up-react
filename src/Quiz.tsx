@@ -1,3 +1,4 @@
+import QuizNavigation from "./QuizNavigation";
 import React, { useState } from "react";
 import { useSpring, useTransition, useTrail, a, animated } from "react-spring";
 // import QuizDataItem from "./QuizDataItem";
@@ -85,24 +86,10 @@ const Quiz: React.FC<QuizProps> = ({ quizData, active, setActive }) => {
                   ))}
                 </Trail>
               </ul>
-              <div className="flex justify-end gap-2 absolute bottom-20 right-6 md:right-0">
-                <button
-                  disabled={!currentQuestion}
-                  onClick={() => {
-                    if (currentQuestion) setCurrentQuestion((s) => s - 1);
-                  }}
-                >
-                  Prev
-                </button>
-                <button
-                  //TODO: Disabled if question is not answered.
-                  onClick={() => {
-                    setCurrentQuestion((s) => s + 1);
-                  }}
-                >
-                  Next
-                </button>
-              </div>
+              <QuizNavigation
+                currentQuestion={currentQuestion}
+                setCurrentQuestion={setCurrentQuestion}
+              ></QuizNavigation>
             </div>
           );
         })}

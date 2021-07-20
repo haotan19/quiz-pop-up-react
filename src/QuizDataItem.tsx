@@ -1,7 +1,7 @@
 import React from "react";
 import { useSpring, useTransition, animated } from "react-spring";
 import { DataItem } from "utils";
-
+import QuizNavigation from "./QuizNavigation";
 interface Props {
   dataItem: DataItem;
   currentQuestion: number;
@@ -36,7 +36,6 @@ const QuizDataItem: React.FC<Props> = ({
     to: { opacity: 1 },
     from: { opacity: 0 },
     delay: 200,
-
   });
 
   return (
@@ -56,24 +55,10 @@ const QuizDataItem: React.FC<Props> = ({
           </li>
         ))}
       </ul>
-      <div className="flex justify-end gap-2 absolute bottom-20 right-6 md:right-0">
-        <button
-          disabled={!currentQuestion}
-          onClick={() => {
-            if (currentQuestion) setCurrentQuestion((s) => s - 1);
-          }}
-        >
-          Prev
-        </button>
-        <button
-          //TODO: Disabled if question is not answered.
-          onClick={() => {
-            setCurrentQuestion((s) => s + 1);
-          }}
-        >
-          Next
-        </button>
-      </div>
+      <QuizNavigation
+        currentQuestion={currentQuestion}
+        setCurrentQuestion={setCurrentQuestion}
+      ></QuizNavigation>
     </animated.div>
   );
 };
