@@ -24,11 +24,17 @@ const Quiz: React.FC<Props> = ({ quizData, active, setActive }) => {
       <BackgroundOverlay onClick={() => setActive(false)} />
       <QuizCard>
         {quizData.map((dataItem) => (
-          <QuizDataItem key={dataItem.id} dataItem={dataItem} currentQuestion={currentQuestion} />
+          <QuizDataItem
+            key={dataItem.id}
+            dataItem={dataItem}
+            currentQuestion={currentQuestion}
+            setCurrentQuestion={setCurrentQuestion}
+          />
         ))}
+        {currentQuestion > quizData.length - 1 && <div>Success</div>}
       </QuizCard>
     </div>
   );
 };
 
-export default Quiz; 
+export default Quiz;

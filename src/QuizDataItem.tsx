@@ -5,10 +5,15 @@ import { DataItem } from "utils";
 interface Props {
   dataItem: DataItem;
   currentQuestion: number;
+  setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const QuizDataItem: React.FC<Props> = ({ dataItem, currentQuestion }) => {
-  let wrapperClassName = "w-full h-full absolute top-0 left-0";
+const QuizDataItem: React.FC<Props> = ({
+  dataItem,
+  currentQuestion,
+  setCurrentQuestion,
+}) => {
+  let wrapperClassName = "w-full h-full absolute top-0 left-0 px-6 py-6 flex flex-col justify-center";
   let gridClassName = "grid grid-cols-2 md:grid-cols-3 gap-2";
   let btnClassName = "btn";
 
@@ -22,6 +27,7 @@ const QuizDataItem: React.FC<Props> = ({ dataItem, currentQuestion }) => {
     if (dataItem.id === currentQuestion - 1) wrapperClassName += " -left-full";
     else if (dataItem.id === currentQuestion + 1)
       wrapperClassName += " left-full";
+    else return <div />;
   }
 
   const styles = useSpring({
@@ -36,10 +42,31 @@ const QuizDataItem: React.FC<Props> = ({ dataItem, currentQuestion }) => {
       <ul className={gridClassName}>
         {dataItem.answers.map((answer, index) => (
           <li key={answer + index}>
-            <button className={btnClassName}>{answer}</button>
+            <button
+              className={btnClassName}
+              onClick={() => setCurrentQuestion((s) => s + 1)}
+            >
+              {answer}
+            </button>
           </li>
         ))}
       </ul>
+      <div className="flex justify-end gap-2">
+        <button
+          onClick={() => {
+            if (currentQuestion) setCurrentQuestion((s) => s - 1);
+          }}
+        >
+          Prev
+        </button>
+        <button
+          onClick={() => {
+            setCurrentQuestion((s) => s + 1);
+          }}
+        >
+          Next
+        </button>
+      </div>
     </animated.div>
   );
 };
