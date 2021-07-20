@@ -58,7 +58,7 @@ window.addEventListener("scroll", () => {
 });
 
 const QuizEntry = () => {
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
     const body = document.body;
@@ -77,7 +77,7 @@ const QuizEntry = () => {
   }, [active]);
 
   return (
-    <section className="grid justify-center gap-4">
+    <section className="grid justify-center gap-4 py-6">
       <h1 className="text-center text-4xl">KNOW YOUR SKIN</h1>
       <p className="text-center text-lg">
         Ready to find the right skincare products?

@@ -13,7 +13,7 @@ const QuizNavigation: React.FC<Props> = ({
   additionalPaddingRight
 }) => {
   return (
-    <div className={" bg-gray-400 self-end w-full flex justify-end gap-2  bottom-8 sm:bottom-14 md:bottom-20 right-6 md:right-0 " + additionalPaddingRight}>
+    <div className={"self-end w-full flex justify-end gap-2  bottom-8 sm:bottom-14 md:bottom-20 right-6 md:right-0 " + additionalPaddingRight}>
       <button
         disabled={!currentQuestion}
         onClick={() => {
