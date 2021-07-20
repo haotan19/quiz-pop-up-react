@@ -24,7 +24,7 @@ const Quiz: React.FC<Props> = ({ quizData, active, setActive }) => {
       <BackgroundOverlay onClick={() => setActive(false)} />
       <QuizCard>
         {quizData.map((dataItem) => (
-          <QuizDataItem key={dataItem.id} dataItem={dataItem} />
+          <QuizDataItem key={dataItem.id} dataItem={dataItem} currentQuestion={currentQuestion} />
         ))}
       </QuizCard>
     </div>
