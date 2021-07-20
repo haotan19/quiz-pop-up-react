@@ -51,7 +51,7 @@ const QUIZ_DATA: DataItem[] = [
 ];
 
 const QuizEntry = () => {
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(false);
 
   return (
     <section className="grid justify-center gap-4">
