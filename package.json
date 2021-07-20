@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel index.html"
+    "dev": "parcel index.html",
+    "build": "parcel build index.html",
+    "build-js": "parcel build ./src/_app.tsx"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +20,7 @@
   "dependencies": {
     "@tailwindcss/postcss7-compat": "^2.2.4",
     "autoprefixer": "^9",
+    "parcel-bundler": "^1.12.5",
     "postcss": "^7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
