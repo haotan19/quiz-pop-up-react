@@ -13,9 +13,10 @@ interface TrailProps {
 const Trail: React.FC<TrailProps> = ({ open, className, children }) => {
   const items = React.Children.toArray(children);
   const trail = useTrail(items.length, {
-    config: { mass: 5, tension: 2000, friction: 200 },
+    config: { mass: 3, tension: 2000, friction: 220 },
     opacity: open ? 1 : 0,
     y: open ? 0 : 20,
+    border: open ? 3 : 0,
     from: { opacity: 0, y: 20, height: 0 },
   });
   return (
@@ -53,6 +54,8 @@ const Quiz: React.FC<QuizProps> = ({ quizData, active, setActive }) => {
           let gridClassName = "grid gap-2 grid-cols-2 md:grid-cols-3 mt-10";
           let btnClassName = "btn";
 
+          let trailAnimation = false;
+
           const tooManyCharacters = (text: string) => text.length > 18;
           if (dataItem.answers.some(tooManyCharacters)) {
             gridClassName = "grid gap-2 grid-cols-1 mt-6";
@@ -61,16 +64,17 @@ const Quiz: React.FC<QuizProps> = ({ quizData, active, setActive }) => {
 
           if (dataItem.id !== currentQuestion) {
             wrapperClassName += " hidden";
-          }
+          } else trailAnimation = true;
+
           return (
             <div key={dataItem.id} className={wrapperClassName}>
               <h2 className="text-2xl sm:text-3xl pt-20 md:pt-24">
                 {dataItem.question}
               </h2>
               <ul>
-                <Trail open={true} className={gridClassName}>
+                <Trail open={trailAnimation} className={gridClassName}>
                   {dataItem.answers.map((answer, index) => (
-                    <li key={answer + index}>
+                    <li className="overflow-hidden" key={answer + index}>
                       <button
                         className={btnClassName}
                         onClick={() => setCurrentQuestion((s) => s + 1)}
