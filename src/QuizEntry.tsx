@@ -58,7 +58,7 @@ window.addEventListener("scroll", () => {
 });
 
 const QuizEntry = () => {
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(true);
 
   useEffect(() => {
     const body = document.body;

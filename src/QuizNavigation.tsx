@@ -4,14 +4,16 @@ import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 interface Props {
   currentQuestion: number;
   setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>;
+  additionalPaddingRight: string
 }
 
 const QuizNavigation: React.FC<Props> = ({
   currentQuestion,
   setCurrentQuestion,
+  additionalPaddingRight
 }) => {
   return (
-    <div className="flex justify-end gap-2 absolute bottom-20 right-6 md:right-0">
+    <div className={" bg-gray-400 self-end w-full flex justify-end gap-2  bottom-8 sm:bottom-14 md:bottom-20 right-6 md:right-0 " + additionalPaddingRight}>
       <button
         disabled={!currentQuestion}
         onClick={() => {
