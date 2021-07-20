@@ -1,5 +1,5 @@
 import React from "react";
-import { useSpring, animated } from "react-spring";
+import { useSpring, useTransition, animated } from "react-spring";
 import { DataItem } from "utils";
 
 interface Props {
@@ -24,17 +24,19 @@ const QuizDataItem: React.FC<Props> = ({
     btnClassName += " text-left max-w-prose";
   }
 
-  if (dataItem.id !== currentQuestion) {
-    if (dataItem.id === currentQuestion - 1) wrapperClassName += " -left-full";
-    else if (dataItem.id === currentQuestion + 1)
-      wrapperClassName += " left-full";
-    else return <div />;
-  }
+  // if (dataItem.id !== currentQuestion) {
+  //   if (dataItem.id === currentQuestion - 1) wrapperClassName += " -left-full";
+  //   else if (dataItem.id === currentQuestion + 1)
+  //     wrapperClassName += " left-full";
+  //   else return <div />;
+  // }
 
   const styles = useSpring({
     cancel: dataItem.id !== currentQuestion,
     to: { opacity: 1 },
     from: { opacity: 0 },
+    delay: 200,
+
   });
 
   return (

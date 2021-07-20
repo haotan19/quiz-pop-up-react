@@ -5,7 +5,7 @@ const Quiz = React.lazy(() => import("./Quiz"));
 
 import { DataItem } from "utils";
 
-const quizData: DataItem[] = [
+const QUIZ_DATA: DataItem[] = [
   {
     id: 0,
     question: "How old are you?",
@@ -61,7 +61,7 @@ const QuizEntry = () => {
       </p>
       <CallToActionButton setActive={setActive} />
       <Suspense fallback={<div />}>
-        <Quiz quizData={quizData} active={active} setActive={setActive} />
+        <Quiz quizData={QUIZ_DATA} active={active} setActive={setActive} />
       </Suspense>
     </section>
   );
